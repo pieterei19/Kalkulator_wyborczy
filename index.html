@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kalkulator wyborczy</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Kalkulator wyborczy</h1>
+    </header>
+    <main>
+      <form id="form" action="#" name="formek">
+        <label for="nazwa"
+          >Nazwa ugrupowania:
+          <input type="text" name="nazwa" id="nazwa" required
+        /></label>
+        <label for="koalicja"
+          >Czy jest koalicją:
+          <input type="checkbox" name="koalicja" id="koalicja"
+        /></label>
+        <label for="glosy"
+          >Ilość głosów: <input type="number" name="glosy" id="glosy" required
+        /></label>
+        <input
+          type="submit"
+          value="Dodaj kolejne ugrupowanie"
+          onclick="wyborczy()"
+        />
+        <button>Sprawdź wynik procentowy</button>
+      </form>
+      <div id="wyswietl">
+        <ol id="lista"></ol>
+      </div>
+    </main>
+    <footer>&copy Mateusz Pieter</footer>
+    <script>
+      const lista = document.getElementById('lista');
+
+      function wyborczy() {
+        let nazwa = document.forms.formek.nazwa.value;
+        let koalicja = document.forms.formek.koalicja.checked;
+        let glosy = document.forms.formek.glosy.value;
+        let li = document.createElement('li');
+        let tekst = nazwa;
+        if (koalicja == true) {
+          tekst += ' jest koalicją, ilość głosów: ';
+          tekst += glosy;
+        } else {
+          tekst += ' nie jest koalicją, ilość głosów: ';
+          tekst += glosy;
+        }
+        li.innerText = tekst;
+        lista.append(li);
+        document.getElementById('form').reset();
+      }
+    </script>
+  </body>
+</html>
